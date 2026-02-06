@@ -1,0 +1,21 @@
+# 基础依赖
+torch>=2.0.1
+torchvision>=0.15.2
+timm>=0.9.5
+
+# 数据处理
+numpy>=1.23.5
+pandas>=1.5.3
+scikit-learn>=1.2.2
+
+# 可视化
+matplotlib>=3.7.1
+Pillow>=10.0.0
+scienceplots>=1.0.1  # 如果安装失败尝试: pip install git+https://github.com/garrettj403/SciencePlots.git
+
+# 工具类
+tqdm>=4.65.0
+pathlib>=1.0.1  # 仅Python<3.4需要
+
+# 其他
+pyyaml>=6.0
