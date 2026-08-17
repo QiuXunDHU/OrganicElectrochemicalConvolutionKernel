@@ -1,4 +1,32 @@
-data/
+# Python caches and local environments
 __pycache__/
+*.py[cod]
+*.pyo
+.venv/
+venv/
+
+# IDE and local agent/index state
 .idea/
+.vscode/
+.kiro/
+.codegraph/
+
+# Downloaded third-party image data
+data/raw/UCMerced_LandUse/Images/
+
+# Generated experiments, models, and logs
 experiments/
+scripts/experiments/
+*.pth
+*.pt
+*.log
+
+# Internal review artifacts and unpublished metadata
+*.zip
+CITATION.cff
+docs/requirements-report.md
+docs/requirements-report.en.md
+
+# Operating-system artifacts
+.DS_Store
+Thumbs.db
