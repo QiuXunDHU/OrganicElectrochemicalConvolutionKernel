@@ -23,6 +23,7 @@ scripts/experiments/
 
 # Internal review artifacts and unpublished metadata
 *.zip
+*.bak
 CITATION.cff
 docs/requirements-report.md
 docs/requirements-report.en.md
