@@ -1,0 +1,131 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="650" viewBox="0 0 1600 650" role="img" aria-labelledby="title description">
+  <title id="title">Image-classification software workflow</title>
+  <desc id="description">Bilingual diagram of a generic software pipeline from input folders to recorded outputs.</desc>
+  <defs>
+    <linearGradient id="background" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f8fbff"/>
+      <stop offset="1" stop-color="#eef2ff"/>
+    </linearGradient>
+    <linearGradient id="titleGradient" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#1d4ed8"/>
+      <stop offset="0.52" stop-color="#7c3aed"/>
+      <stop offset="1" stop-color="#0f766e"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="150%">
+      <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#0f172a" flood-opacity="0.12"/>
+    </filter>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="strokeWidth">
+      <path d="M 0 0 L 12 6 L 0 12 z" fill="#64748b"/>
+    </marker>
+    <style>
+      .font { font-family: "Segoe UI", "Microsoft YaHei", "PingFang SC", Arial, sans-serif; }
+      .card-title { font-size: 22px; font-weight: 700; fill: #0f172a; }
+      .card-subtitle { font-size: 14px; font-weight: 600; fill: #475569; letter-spacing: 0.3px; }
+      .body { font-size: 16px; fill: #334155; }
+      .small { font-size: 14px; fill: #64748b; }
+      .step { font-size: 13px; font-weight: 700; fill: #ffffff; }
+      .arrow { fill: none; stroke: #64748b; stroke-width: 3; marker-end: url(#arrow); }
+    </style>
+  </defs>
+
+  <rect width="1600" height="650" rx="28" fill="url(#background)"/>
+  <circle cx="70" cy="70" r="110" fill="#dbeafe" opacity="0.45"/>
+  <circle cx="1510" cy="590" r="145" fill="#ddd6fe" opacity="0.35"/>
+
+  <text x="800" y="58" text-anchor="middle" class="font" font-size="30" font-weight="800" fill="url(#titleGradient)">图像分类软件流程 / Image-Classification Software Workflow</text>
+  <text x="800" y="87" text-anchor="middle" class="font" font-size="15" fill="#64748b">公开软件接口 / Public software interface</text>
+
+  <path class="arrow" d="M 290 315 L 345 315"/>
+  <path class="arrow" d="M 595 315 L 650 315"/>
+  <path class="arrow" d="M 950 315 L 1005 315"/>
+  <path class="arrow" d="M 1265 315 L 1320 315"/>
+
+  <g filter="url(#shadow)">
+    <rect x="40" y="145" width="250" height="340" rx="22" fill="#ffffff" stroke="#93c5fd" stroke-width="2"/>
+    <rect x="40" y="145" width="250" height="78" rx="22" fill="#dbeafe"/>
+    <rect x="40" y="201" width="250" height="22" fill="#dbeafe"/>
+  </g>
+  <circle cx="72" cy="178" r="18" fill="#2563eb"/>
+  <text x="72" y="183" text-anchor="middle" class="font step">1</text>
+  <text x="101" y="176" class="font card-title">输入目录</text>
+  <text x="101" y="199" class="font card-subtitle">INPUT FOLDERS</text>
+  <rect x="66" y="260" width="198" height="62" rx="12" fill="#eff6ff" stroke="#bfdbfe"/>
+  <text x="165" y="286" text-anchor="middle" class="font body">分类图像 / Labeled images</text>
+  <text x="165" y="307" text-anchor="middle" class="font small">folder-based layout</text>
+  <rect x="66" y="344" width="198" height="62" rx="12" fill="#eff6ff" stroke="#bfdbfe"/>
+  <text x="165" y="370" text-anchor="middle" class="font body">路径参数 / Data path</text>
+  <text x="165" y="391" text-anchor="middle" class="font small">--data-root</text>
+
+  <g filter="url(#shadow)">
+    <rect x="345" y="145" width="250" height="340" rx="22" fill="#ffffff" stroke="#67e8f9" stroke-width="2"/>
+    <rect x="345" y="145" width="250" height="78" rx="22" fill="#cffafe"/>
+    <rect x="345" y="201" width="250" height="22" fill="#cffafe"/>
+  </g>
+  <circle cx="377" cy="178" r="18" fill="#0891b2"/>
+  <text x="377" y="183" text-anchor="middle" class="font step">2</text>
+  <text x="406" y="176" class="font card-title">数据处理</text>
+  <text x="406" y="199" class="font card-subtitle">DATA PIPELINE</text>
+  <rect x="371" y="250" width="198" height="54" rx="12" fill="#ecfeff" stroke="#a5f3fc"/>
+  <text x="470" y="282" text-anchor="middle" class="font body">固定 seed / Seeded split</text>
+  <rect x="371" y="320" width="198" height="54" rx="12" fill="#ecfeff" stroke="#a5f3fc"/>
+  <text x="470" y="352" text-anchor="middle" class="font body">标准变换 / Transforms</text>
+  <rect x="371" y="390" width="198" height="54" rx="12" fill="#ecfeff" stroke="#a5f3fc"/>
+  <text x="470" y="422" text-anchor="middle" class="font body">单通道 / Single channel</text>
+
+  <g filter="url(#shadow)">
+    <rect x="650" y="125" width="300" height="380" rx="22" fill="#ffffff" stroke="#c4b5fd" stroke-width="2"/>
+    <rect x="650" y="125" width="300" height="78" rx="22" fill="#ede9fe"/>
+    <rect x="650" y="181" width="300" height="22" fill="#ede9fe"/>
+  </g>
+  <circle cx="682" cy="158" r="18" fill="#7c3aed"/>
+  <text x="682" y="163" text-anchor="middle" class="font step">3</text>
+  <text x="711" y="156" class="font card-title">前端模式</text>
+  <text x="711" y="179" class="font card-subtitle">FRONT-END MODES</text>
+  <rect x="676" y="230" width="248" height="52" rx="13" fill="#f5f3ff" stroke="#c4b5fd"/>
+  <text x="800" y="262" text-anchor="middle" class="font body">device · fixed preset</text>
+  <rect x="676" y="296" width="248" height="52" rx="13" fill="#fff7ed" stroke="#fdba74"/>
+  <text x="800" y="328" text-anchor="middle" class="font body">laplacian · fixed</text>
+  <rect x="676" y="362" width="248" height="52" rx="13" fill="#ecfdf5" stroke="#86efac"/>
+  <text x="800" y="394" text-anchor="middle" class="font body">learnable · trainable</text>
+  <rect x="676" y="428" width="248" height="52" rx="13" fill="#f8fafc" stroke="#cbd5e1"/>
+  <text x="800" y="460" text-anchor="middle" class="font body">none · bypass</text>
+
+  <g filter="url(#shadow)">
+    <rect x="1005" y="145" width="260" height="340" rx="22" fill="#ffffff" stroke="#fdba74" stroke-width="2"/>
+    <rect x="1005" y="145" width="260" height="78" rx="22" fill="#ffedd5"/>
+    <rect x="1005" y="201" width="260" height="22" fill="#ffedd5"/>
+  </g>
+  <circle cx="1037" cy="178" r="18" fill="#ea580c"/>
+  <text x="1037" y="183" text-anchor="middle" class="font step">4</text>
+  <text x="1066" y="176" class="font card-title">分类模型</text>
+  <text x="1066" y="199" class="font card-subtitle">MODEL</text>
+  <rect x="1033" y="270" width="204" height="58" rx="14" fill="#fff7ed" stroke="#fed7aa"/>
+  <text x="1135" y="305" text-anchor="middle" class="font body">CNN backbones</text>
+  <rect x="1033" y="350" width="204" height="58" rx="14" fill="#fef3c7" stroke="#fcd34d"/>
+  <text x="1135" y="385" text-anchor="middle" class="font body">Transformer backbones</text>
+  <text x="1135" y="445" text-anchor="middle" class="font small">selected by CLI</text>
+
+  <g filter="url(#shadow)">
+    <rect x="1320" y="145" width="240" height="340" rx="22" fill="#ffffff" stroke="#86efac" stroke-width="2"/>
+    <rect x="1320" y="145" width="240" height="78" rx="22" fill="#dcfce7"/>
+    <rect x="1320" y="201" width="240" height="22" fill="#dcfce7"/>
+  </g>
+  <circle cx="1352" cy="178" r="18" fill="#16a34a"/>
+  <text x="1352" y="183" text-anchor="middle" class="font step">5</text>
+  <text x="1381" y="176" class="font card-title">运行输出</text>
+  <text x="1381" y="199" class="font card-subtitle">OUTPUTS</text>
+  <rect x="1345" y="255" width="190" height="42" rx="11" fill="#f0fdf4" stroke="#bbf7d0"/>
+  <text x="1440" y="281" text-anchor="middle" class="font body">Metrics</text>
+  <rect x="1345" y="311" width="190" height="42" rx="11" fill="#f0fdf4" stroke="#bbf7d0"/>
+  <text x="1440" y="337" text-anchor="middle" class="font body">Checkpoints</text>
+  <rect x="1345" y="367" width="190" height="42" rx="11" fill="#f0fdf4" stroke="#bbf7d0"/>
+  <text x="1440" y="393" text-anchor="middle" class="font body">Figures</text>
+  <rect x="1345" y="423" width="190" height="42" rx="11" fill="#f0fdf4" stroke="#bbf7d0"/>
+  <text x="1440" y="449" text-anchor="middle" class="font body">Logs</text>
+
+  <g filter="url(#shadow)">
+    <rect x="310" y="545" width="980" height="70" rx="22" fill="#0f172a"/>
+  </g>
+  <text x="800" y="575" text-anchor="middle" class="font" font-size="17" font-weight="700" fill="#f8fafc">可复现运行 / Reproducible Runs</text>
+  <text x="800" y="600" text-anchor="middle" class="font" font-size="14" fill="#cbd5e1">记录 seed · 保存配置 · 复用检查点 / Recorded seeds · Saved configuration · Reusable checkpoints</text>
+</svg>

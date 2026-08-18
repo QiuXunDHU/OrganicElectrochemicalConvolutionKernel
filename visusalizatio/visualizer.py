@@ -1,4 +1,4 @@
-import datetime
+from datetime import datetime
 import traceback
 
 import torch
@@ -17,20 +17,28 @@ import numpy as np
 
 class ResultVisualizer:
     @staticmethod
-    def analyze(model, loader, class_names=CLASS_NAMES, save_path=None):
+    def analyze(model, loader, class_names=CLASS_NAMES, save_path=None, device=None):
         model.eval()
+        evaluation_device = torch.device(device) if device is not None else next(model.parameters()).device
         all_preds = []
         all_labels = []
         with torch.no_grad():
             for inputs, labels in loader:
-                inputs = inputs.to(DEVICE)
+                inputs = inputs.to(evaluation_device)
                 outputs = model(inputs)
                 all_preds.extend(outputs.argmax(1).cpu().numpy())
                 all_labels.extend(labels.numpy())
 
-        report = classification_report(all_labels, all_preds,
-                                       target_names=class_names, output_dict=True)
-        cm = confusion_matrix(all_labels, all_preds)
+        label_ids = list(range(len(class_names)))
+        report = classification_report(
+            all_labels,
+            all_preds,
+            labels=label_ids,
+            target_names=class_names,
+            output_dict=True,
+            zero_division=0,
+        )
+        cm = confusion_matrix(all_labels, all_preds, labels=label_ids)
 
         plt.figure(figsize=(12, 10), dpi=300)
         disp = ConfusionMatrixDisplay(cm, display_labels=class_names)
@@ -47,12 +55,12 @@ class ResultVisualizer:
         plt.tight_layout()
 
         if save_path:
+            save_path = Path(save_path)
+            save_path.parent.mkdir(parents=True, exist_ok=True)
             plt.savefig(save_path, bbox_inches='tight', dpi=300)
-            # ========== CSV保存部分 ==========
             csv_dir = save_path.parent.parent / 'data'
             csv_dir.mkdir(parents=True, exist_ok=True)
-            csv_filename = save_path.stem + '.csv'
-            csv_path = csv_dir / csv_filename
+            csv_path = csv_dir / f'{save_path.stem}.csv'
             cm_df = pd.DataFrame(
                 cm,
                 index=pd.Index(class_names, name='Actual'),
@@ -333,14 +341,14 @@ class VisualizationHelper:
                     self._save_basic_images(rgb_img, target_size, sample_dir)
 
                     # 边缘增强可视化
-                    if hasattr(self.model, 'initial_conv'):
+                    if self.model.initial_conv is not None:
                         self._visualize_initial_conv_edges(
                             input_tensor,
                             sample_dir / 'initial_conv_edge.png'
                         )
 
-                    # Grad-CAM可视化
-                    cam, pred_class = self._compute_gradcam(input_tensor, label)
+                    # Grad-CAM可视化；未指定目标类时使用模型预测类
+                    cam, pred_class = self._compute_gradcam(input_tensor)
                     if cam is not None:
                         self._save_gradcam_results(
                             cam,
